@@ -1,0 +1,8 @@
+{
+    "extends": "tslint:recommended",
+    "rules": {
+        "eofline": false,
+        "interface-name": false,
+        "max-line-length": false
+    }
+}
