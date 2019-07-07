@@ -1,6 +1,10 @@
 interface Properties {
+
+    name: string;
     text: string;
-    onChange?: (name: string) => void;
+
+    value: string;
+    onChange?: (name: string, value: string) => void;
 }
 
 export default Properties;

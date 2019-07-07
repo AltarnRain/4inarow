@@ -1,4 +1,4 @@
-import colors from "../../Types/Colors";
+import colors from "../../../Types/Colors";
 
 interface Properties {
     color: colors;

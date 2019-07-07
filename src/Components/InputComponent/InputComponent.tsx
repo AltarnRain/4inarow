@@ -5,17 +5,17 @@
 import React from "react";
 import Properties from "./Properties";
 
-const InputComponent: React.FC<Properties> = (props) => {
+const InputComponent: React.SFC<Properties> = (props) => {
     return (
         <div>
             <span>{props.text}</span>
-            <input onChange={onChange} />
+            <input value={props.value} onChange={onChange} />
         </div>
     );
 
     function onChange(event: React.ChangeEvent<HTMLInputElement>): void {
         if (props.onChange) {
-            props.onChange(event.target.value);
+            props.onChange(props.name, event.target.value);
         }
     }
 };

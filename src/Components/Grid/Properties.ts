@@ -1,11 +1,10 @@
+import SetupModel from "../../Models/Setup";
 
 /**
  * Properties for the player grid.
  */
 interface Properties {
-    player1Name: string;
-
-    player2Name: string;
+    setup?: SetupModel;
 }
 
 export default Properties;

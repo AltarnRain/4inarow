@@ -1,33 +1,31 @@
 import React, { useState } from "react";
+import SetupModel from "../Models/Setup";
 import "./App.css";
-import Grid from "./Grid/Grid";
-import PlayerNamesComponent from "./PlayerNamesComponent/PlayerNamesComponent";
+import GridComponent from "./Grid/GridComponent";
+import SetupComponent from "./Setup/SetupComponent";
 
 const App: React.FC = () => {
 
-    const [playerNamesEntered, setPlayerNamesEntered] = useState(false);
-    const [player1Name, setPlayer1Name] = useState("");
-    const [player2Name, setPlayer2Name] = useState("");
+    const [setupComplete, setSetupComplete] = useState(false);
+    const [currentSetup, setCurrentSetup] = useState<SetupModel>();
 
     /**
      * Sets both player names.
      * @param {string} name1. First name.
      * @param {string} name2. Second name.
      */
-    function doneEnteredNames(name1: string, name2: string) {
-        setPlayerNamesEntered(true);
-
-        setPlayer1Name(name1);
-        setPlayer2Name(name2);
+    function doneEnteredNames(setup: SetupModel) {
+        setSetupComplete(true);
+        setCurrentSetup(setup);
     }
 
     return (
         <div>
-            {playerNamesEntered
+            {!setupComplete
                 ?
-                <Grid player1Name={player1Name} player2Name={player2Name} />
+                <GridComponent setup={currentSetup} />
                 :
-                <PlayerNamesComponent onEnteredNamed={doneEnteredNames} />
+                <SetupComponent onSetup={doneEnteredNames} />
             }
         </div>
     );
