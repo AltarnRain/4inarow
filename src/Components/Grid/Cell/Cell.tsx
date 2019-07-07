@@ -16,7 +16,7 @@ const Cell: React.FC<Properties> = (props) => {
     }
 
     return (
-        <td style={{backgroundColor: props.color}} onClick={onClick}></td>
+        <td style={{ backgroundColor: props.color }} onClick={onClick}></td>
     );
 };
 

@@ -115,7 +115,7 @@ const GridComponent: React.FC<Properties> = (props) => {
                 </div>
                 : <div>
                     <h2>Current player: {currentPlayer}</h2>
-                    <span className={currentColor}><b>Current color</b></span>
+                    <span style={{ backgroundColor: currentColor }}><b>Current color</b></span>
                 </div>
             }
             <br />
