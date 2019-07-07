@@ -107,7 +107,7 @@ const GridComponent: React.FC<Properties> = (props) => {
     }
 
     return (
-        <div className="centerScreen" >
+        <div style={{ textAlign: "center" }} >
             {won ?
                 <div>
                     <h1>{currentPlayer} has won the game</h1>
