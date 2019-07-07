@@ -7,8 +7,8 @@ const SetupComponent: React.FC<Properties> = (props) => {
 
     const [player1Name, setPlayer1Name] = useState("Player 1");
     const [player2Name, setPlayer2Name] = useState("Player 2");
-    const [gridX, setGridX] = useState("7");
-    const [gridY, setGridY] = useState("6");
+    const [gridX, setGridX] = useState("6");
+    const [gridY, setGridY] = useState("7");
     const [winNumber, setWinNumber] = useState("4");
 
     /**

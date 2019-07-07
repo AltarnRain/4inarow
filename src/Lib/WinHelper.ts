@@ -1,7 +1,11 @@
+/**
+ * Helper functions for determining if a player has one.
+ */
+
 import Colors from "../Types/Colors";
 
 /**
- * Check if a player has one with their last move.
+ * Check if a player has won with their last move.
  * @param {nunmber} rowIndex. The row index where the player clicked.
  * @param {number} columnIndex. The column index where the player clicked.
  * @param {Color} playerColor. The color of the piece the player placed.
@@ -11,22 +15,21 @@ export function checkWin(arr: Colors[][], winNumber: number, rowIndex: number, c
 
     const trueWinNumber = winNumber - 1;
 
-    // Check for 4 in a row in all directions.
+    // Check for n in a row in all directions.
     checks.push(checkForNValuesInARow(arr, trueWinNumber, playerColor, "transparent", rowIndex, columnIndex, "up", "none"));
+    checks.push(checkForNValuesInARow(arr, trueWinNumber, playerColor, "transparent", rowIndex, columnIndex, "down", "none"));
     checks.push(checkForNValuesInARow(arr, trueWinNumber, playerColor, "transparent", rowIndex, columnIndex, "none", "left"));
     checks.push(checkForNValuesInARow(arr, trueWinNumber, playerColor, "transparent", rowIndex, columnIndex, "none", "right"));
     checks.push(checkForNValuesInARow(arr, trueWinNumber, playerColor, "transparent", rowIndex, columnIndex, "up", "left"));
     checks.push(checkForNValuesInARow(arr, trueWinNumber, playerColor, "transparent", rowIndex, columnIndex, "up", "right"));
     checks.push(checkForNValuesInARow(arr, trueWinNumber, playerColor, "transparent", rowIndex, columnIndex, "down", "left"));
-    checks.push(checkForNValuesInARow(arr, trueWinNumber, playerColor, "transparent", rowIndex, columnIndex, "down", "none"));
     checks.push(checkForNValuesInARow(arr, trueWinNumber, playerColor, "transparent", rowIndex, columnIndex, "down", "right"));
 
-    // Check if four slots have the same color either horizontally or vertically.
     return checks.some((c) => c === true);
 }
 
 /**
- * Checks if there's 4 colors of 'color' horizantally, vertically or diagonaly.
+ * Checks if there's N colors of 'color' horizantally, vertically or diagonaly.
  * @param {Colors} color. The color to check.
  * @param {number} rowIndex. The row index used to check up and down.
  * @param {number} columnIndex. The column index used to check left and right.

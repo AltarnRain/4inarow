@@ -1,3 +1,7 @@
+/**
+ * This component draws the game board and handles user interaction.
+ */
+
 import React, { useState } from "react";
 import { checkWin } from "../../Lib/WinHelper";
 import Colors from "../../Types/Colors";
@@ -7,8 +11,8 @@ import Properties from "./Properties";
 
 const GridComponent: React.FC<Properties> = (props) => {
 
-    const totalRows = typeof (props.setup) !== "undefined" ? props.setup.gridX : 6;
-    const totalColumns = typeof (props.setup) !== "undefined" ? props.setup.gridY : 7;
+    const totalRows = typeof (props.setup) !== "undefined" ? props.setup.gridX : 7;
+    const totalColumns = typeof (props.setup) !== "undefined" ? props.setup.gridY : 6;
     const player1Name = typeof (props.setup) !== "undefined" ? props.setup.player1Name : "player 1";
     const player2Name = typeof (props.setup) !== "undefined" ? props.setup.player2Name : "player 2";
     const winNumber = typeof (props.setup) !== "undefined" ? props.setup.winNumber : 4;
@@ -43,47 +47,45 @@ const GridComponent: React.FC<Properties> = (props) => {
      * @param {number} rowIndex. The row index.
      * @param {number} columnIndex. The column index.
      */
-    function cellClicked(rowIndex: number, columnIndex: number): void {
+    function onCellClicked(columnIndex: number): void {
+        fillCell(columnIndex);
+    }
 
+    function fillCell(columnIndex: number): void {
+        // Game is one, do not fill a cell.
         if (won === true) {
             return;
         }
 
-        const clickedField = grid[rowIndex][columnIndex];
+        // Find the first available transparent cell for this column
+        let rowIndex = -1;
+        for (let r = totalRows - 1; r > -1; r--) {
+            if (grid[r][columnIndex] === "transparent") {
+                rowIndex = r;
+                break;
+            }
+        }
 
-        if (clickedField === "transparent") {
-            let allowMove = false;
+        // A cell was found, let's fill in its color.
+        if (rowIndex !== -1) {
+            const g = grid.map((row) => [...row]);
+            g[rowIndex][columnIndex] = currentColor as Colors;
+            setGrid(g);
 
-            // Bottow row, always allow
-            if (rowIndex === totalRows - 1) {
-                allowMove = true;
-            } else {
-                const fieldBelowField = grid[rowIndex + 1][columnIndex];
-                if (fieldBelowField !== "transparent") {
-                    allowMove = true;
-                }
+            if (checkWin(grid, winNumber, rowIndex, columnIndex, currentColor as Colors)) {
+                setWon(true);
+                return;
             }
 
-            if (allowMove) {
-
-                const g = grid.map((row) => [...row]);
-                g[rowIndex][columnIndex] = currentColor as Colors;
-
-                setGrid(g);
-
-                if (checkWin(grid, winNumber, rowIndex, columnIndex, currentColor as Colors)) {
-                    setWon(true);
-                    return;
-                }
-
-                SetNextPlayerAndColor();
-            }
-        } else {
-            // do nothing.
+            // No one won, next player's turn.
+            nextPlayer();
         }
     }
 
-    function SetNextPlayerAndColor() {
+    /**
+     * Set the next player. This function also sets the color since player and color are linked.
+     */
+    function nextPlayer() {
         if (currentPlayer === player1Name) {
             setCurrentColor("yellow");
             setCurrentPlayer(player2Name);
@@ -101,11 +103,11 @@ const GridComponent: React.FC<Properties> = (props) => {
         setGrid(createGrid());
 
         // The losing player gets to go first.
-        SetNextPlayerAndColor();
+        nextPlayer();
     }
 
     return (
-        <div>
+        <div className="centerScreen" >
             {won ?
                 <div>
                     <h1>{currentPlayer} has won the game</h1>
@@ -116,15 +118,15 @@ const GridComponent: React.FC<Properties> = (props) => {
                     <span className={currentColor}><b>Current color</b></span>
                 </div>
             }
-            <br/>
-            <table className="gridSize gridBorders">
+            <br />
+            <table className="gridSize gridBorders centerScreen">
                 <tbody>
                     {grid.map((row, rowindex) => {
                         return (
                             <tr key={rowindex}>
                                 {row.map((color, columnIndex) => {
                                     return (
-                                        <Cell key={columnIndex} color={color} rowIndex={rowindex} colIndex={columnIndex} onClick={cellClicked} />
+                                        <Cell key={columnIndex} color={color} colIndex={columnIndex} onClick={onCellClicked} />
                                     );
                                 })}
                             </tr>

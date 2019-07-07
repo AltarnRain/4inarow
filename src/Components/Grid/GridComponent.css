@@ -19,6 +19,12 @@
 }
 
 .gridSize {
-    width: 500px;
-    height: 450px;
+    width: 1000px;
+    height: 900px;
+}
+
+.centerScreen {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }

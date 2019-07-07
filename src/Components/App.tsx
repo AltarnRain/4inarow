@@ -1,3 +1,7 @@
+/**
+ * Main app for N in a row.
+ */
+
 import React, { useState } from "react";
 import SetupModel from "../Models/Setup";
 import "./App.css";
@@ -10,22 +14,22 @@ const App: React.FC = () => {
     const [currentSetup, setCurrentSetup] = useState<SetupModel>();
 
     /**
-     * Sets both player names.
+     * Sets the current setup and begins the game.
      * @param {string} name1. First name.
      * @param {string} name2. Second name.
      */
-    function doneEnteredNames(setup: SetupModel) {
-        setSetupComplete(true);
+    function onSetupDone(setup: SetupModel) {
         setCurrentSetup(setup);
+        setSetupComplete(true);
     }
 
     return (
         <div>
-            {!setupComplete
+            {setupComplete
                 ?
                 <GridComponent setup={currentSetup} />
                 :
-                <SetupComponent onSetup={doneEnteredNames} />
+                <SetupComponent onSetup={onSetupDone} />
             }
         </div>
     );

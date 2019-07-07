@@ -1,13 +1,25 @@
-import colors from "../../../Types/Colors";
+/**
+ * Properties for a cell.
+ */
+
+import Colors from "../../../Types/Colors";
 
 interface Properties {
-    color: colors;
 
-    rowIndex: number;
+    /**
+     * The cell color
+     */
+    color: Colors;
 
+    /**
+     * The cells column index.
+     */
     colIndex: number;
 
-    onClick?: (rowIndex: number, colIndex: number) => void;
+    /**
+     * Called when a cell is clicked.
+     */
+    onClick?: (colIndex: number) => void;
 }
 
 export default Properties;
