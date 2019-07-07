@@ -5,7 +5,7 @@
 import React from "react";
 import Properties from "./Properties";
 
-const InputComponent: React.SFC<Properties> = (props) => {
+const InputComponent: React.FC<Properties> = (props) => {
     return (
         <div>
             <span>{props.text}</span>
