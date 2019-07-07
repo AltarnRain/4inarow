@@ -3,10 +3,10 @@
  */
 
 import React, { useState } from "react";
+import { gridStyle } from "../../Lib/Styles";
 import { checkWin } from "../../Lib/WinHelper";
 import Colors from "../../Types/Colors";
 import Cell from "./Cell/Cell";
-import "./GridComponent.css";
 import Properties from "./Properties";
 
 const GridComponent: React.FC<Properties> = (props) => {
@@ -35,7 +35,7 @@ const GridComponent: React.FC<Properties> = (props) => {
             }
             const row = newGrid[rowIndex];
             for (let columnIndex = 0; columnIndex < totalColumns; columnIndex++) {
-                row.push("transparent");
+                row.push("white");
             }
         }
 
@@ -60,7 +60,7 @@ const GridComponent: React.FC<Properties> = (props) => {
         // Find the first available transparent cell for this column
         let rowIndex = -1;
         for (let r = totalRows - 1; r > -1; r--) {
-            if (grid[r][columnIndex] === "transparent") {
+            if (grid[r][columnIndex] === "white") {
                 rowIndex = r;
                 break;
             }
@@ -119,7 +119,7 @@ const GridComponent: React.FC<Properties> = (props) => {
                 </div>
             }
             <br />
-            <table className="gridSize gridBorders centerScreen">
+            <table style={gridStyle()}>
                 <tbody>
                     {grid.map((row, rowindex) => {
                         return (

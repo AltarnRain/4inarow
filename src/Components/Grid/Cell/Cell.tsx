@@ -16,7 +16,7 @@ const Cell: React.FC<Properties> = (props) => {
     }
 
     return (
-        <td className={"gridBorders " + props.color } onClick={onClick}></td>
+        <td style={{backgroundColor: props.color}} onClick={onClick}></td>
     );
 };
 

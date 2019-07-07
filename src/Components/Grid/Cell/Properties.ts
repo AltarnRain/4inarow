@@ -2,6 +2,7 @@
  * Properties for a cell.
  */
 
+import { CSSProperties } from "react";
 import Colors from "../../../Types/Colors";
 
 interface Properties {
