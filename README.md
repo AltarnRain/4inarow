@@ -1,4 +1,4 @@
-# For in a row
+# Four in a row
 
 Four in a row with a twist. Run a browser.
 
