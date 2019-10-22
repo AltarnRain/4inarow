@@ -7,9 +7,9 @@ import Properties from "./Properties";
 
 const InputComponent: React.FC<Properties> = (props) => {
     return (
-        <div>
-            <span>{props.text}</span>
-            <input value={props.value} onChange={onChange} />
+        <div style={{display: "flex"}}>
+            <span style={{display: "flex", width: "10%"}}>{props.text}</span>
+            <input style={{display: "flex", width: "5%"}} value={props.value} onChange={onChange} />
         </div>
     );
 

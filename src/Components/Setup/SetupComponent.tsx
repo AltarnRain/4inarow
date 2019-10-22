@@ -53,15 +53,15 @@ const SetupComponent: React.FC<Properties> = (props) => {
     }
 
     return (
-        <div>
-            <h1>Welcome to {winNumber} in a row</h1>
+        <div style={{ display: "flex", flexDirection: "column",  }}>
+            <h1>Welcome to 4 in a row</h1>
             <p>Feel free to setup the game to you liking. Click "Done" when you're done.</p>
             <InputComponent value={player1Name} name="player1Name" text="Enter player 1's name: " onChange={onChange} />
             <InputComponent value={player2Name} name="player2Name" text="Enter player 2's name: " onChange={onChange} />
             <InputComponent value={gridX} name="gridX" text="Number of rows: " onChange={onChange} />
             <InputComponent value={gridY} name="gridY" text="Number of columns: " onChange={onChange} />
             <InputComponent value={winNumber} name="winNumber" text="Win number: " onChange={onChange} />
-            <button onClick={onDoneClick}>Done</button>
+            <button style={{ display: "flex", width: "8%", justifyContent: "center" }} onClick={onDoneClick}>Done</button>
         </div>
     );
 };
