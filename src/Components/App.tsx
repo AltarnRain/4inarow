@@ -4,7 +4,6 @@
 
 import React, { useState } from "react";
 import SetupModel from "../Models/Setup";
-import "./App.css";
 import GridComponent from "./Grid/GridComponent";
 import SetupComponent from "./Setup/SetupComponent";
 
