@@ -7,8 +7,8 @@ export const gridStyle = (): CSSProperties => {
         borderWidth: "2px",
         borderSpacing: "5px",
         backgroundColor: "blue",
-        width: "1000px",
-        height: "900px",
+        width: "800px",
+        height: "700px",
         marginLeft: "auto",
         marginRight: "auto",
     };
